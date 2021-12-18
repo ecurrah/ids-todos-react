@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Documentation
+## Project Structure
+In order to structure the components of this application we are using the Application Feature Split approach. For more information refer here: https://github.com/goldbergyoni/nodebestpractices#1-project-structure-practices
+
+
+# Below you'll find instructions for "Getting Started with Create React App"
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

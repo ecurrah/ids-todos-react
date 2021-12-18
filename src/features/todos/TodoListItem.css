@@ -1,0 +1,11 @@
+.todo-li {
+    margin: 15px;
+    text-align: start;
+
+}
+
+.todo-li span {
+    padding: 10px;
+    text-align: center;
+
+}
