@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../utils/test-utils';
 import HomePageContainer from '../HomePageContainer';
 
 describe('<HomePageContainer />', () => {
@@ -6,7 +6,7 @@ describe('<HomePageContainer />', () => {
         render(
             <HomePageContainer />
         );
-        
+
         const homePageDiv = screen.getByTestId('home-page');
         expect(homePageDiv).toBeInTheDocument();
     })

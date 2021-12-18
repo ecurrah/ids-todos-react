@@ -72,4 +72,9 @@ export const mockTodos = [
     },
 ];
 
+export const mockCompletedTodos = mockTodos.filter(todo => todo.completed === true);
+export const mockIncompleteTodos = mockTodos.filter(todo => todo.completed === false);
+
 export const mockTodo = mockTodos[0];
+export const mockIncompleteTodo = mockTodos.find(todo => todo.completed === false);
+export const mockCompleteTodo = mockTodos.find(todo => todo.completed === true);
