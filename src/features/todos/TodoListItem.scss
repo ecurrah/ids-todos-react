@@ -1,0 +1,17 @@
+.todo-li {
+    text-align: start;
+    margin:10px;
+}
+
+.todo-li-field {
+    margin: 10px;
+    text-align: center;
+    height: 100%;
+}
+
+.todo-li-field.checked {
+  margin: 10px;
+  text-align: center;
+  text-decoration: line-through;
+  color: #bbbbbb;
+}

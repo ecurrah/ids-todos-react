@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from '../../features/common/Layout';
 import TodoList from '../../features/todos/TodoList';
-import { FaList, FaRegCalendarCheck } from 'react-icons/fa';
-import './HomePage.css';
+import { FaList, FaRegCalendarCheck, FaPlus } from 'react-icons/fa';
+import './HomePage.scss';
 
-const HomePage = ({activeTab, setActiveTab, todos}) => {
+const HomePage = ({activeTab, setActiveTab, todos, newTodoDesc, setNewTodoDesc, createButtonOnClick, todoInputOpen, todoInputOnSubmit }) => {
     const leftActive = activeTab === 'INCOMPLETE';
     const rightActive = activeTab === 'COMPLETED';
 
@@ -27,9 +27,23 @@ const HomePage = ({activeTab, setActiveTab, todos}) => {
                         <FaRegCalendarCheck size={35} className={`tab-icon ${rightActive && 'active'}`} />
                     </span>
                 </div>
+                
                 <div className={`home-page-content`}>
                         <TodoList todos={todos} />
                 </div>
+                <div className={`home-create-button`}>
+                    <div className={`create-button`} onClick={(e) => createButtonOnClick(e)}>
+                        <FaPlus size={35} color='white' className={`create-button-icon`} />
+                    </div>
+                </div>
+                {
+                    todoInputOpen && 
+                    <div className={`home-page-create-container`}>
+                        <form onSubmit={e => todoInputOnSubmit(e)}>
+                            <input autoFocus type='text' placeholder='Type a description and press Enter...' value={newTodoDesc} onChange={(e) => setNewTodoDesc(e.target.value)} />
+                        </form>
+                    </div>
+                }
             </div>
         </Layout>
     );

@@ -1,72 +1,72 @@
 
 export const mockTodos = [
     {
-        id: '1',
+        id: 1,
         description: 'Test TODO_1',
         completed: false
     },
     {
-        id: '2',
+        id: 2,
         description: 'Test TODO_2',
         completed: false
     },
     {
-        id: '3',
+        id: 3,
         description: 'Test TODO_3',
         completed: true
     },
     {
-        id: '4',
+        id: 4,
         description: 'Test TODO_4',
         completed: false
     },
     {
-        id: '5',
+        id: 5,
         description: 'Test TODO_5',
         completed: false
     },
     {
-        id: '6',
+        id: 6,
         description: 'Test TODO_6',
         completed: true
     },
     {
-        id: '7',
+        id: 7,
         description: 'Test TODO_7',
         completed: false
     },
     {
-        id: '8',
+        id: 8,
         description: 'Test TODO_8',
         completed: true
     },
     {
-        id: '9',
+        id: 9,
         description: 'Test TODO_9',
         completed: true
     },
     {
-        id: '10',
+        id: 10,
         description: 'Test TODO_10',
         completed: false
     },
     {
-        id: '11',
+        id: 11,
         description: 'Test TODO_11',
         completed: false
     },
     {
-        id: '12',
+        id: 12,
         description: 'Test TODO_12',
         completed: false
     },
     {
-        id: '13',
+        id: 13,
         description: 'Test TODO_13',
         completed: true
     },
     {
-        id: '14',
+        id: 14,
         description: 'Test TODO_14',
         completed: false
     },

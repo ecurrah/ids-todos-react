@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import todoReducer from '../features/todos/todoSlice';
 
+// used to test components using redux state
 const render = ( 
     ui, 
     {
