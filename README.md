@@ -1,11 +1,14 @@
 # Documentation
 
+## See it Live
+https://ids-todos.web.app/
+
 ## Setup
 Requires Node.js v17.2.0
 
 ```
-git clone {repo}
-cd ./{repo}
+git clone https://github.com/ecurrah/ids-todos-react.git
+cd ./ids-todos-react
 npm install
 ```
 
@@ -17,7 +20,7 @@ npm start
 ## Testing
 Unit testing performed with Jest and React Testing Library (https://testing-library.com/docs/react-testing-library/intro/) 
 ```
-cd {project_root}
+cd ./ids-todos-react
 npm test
 ```
 
