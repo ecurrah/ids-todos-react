@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './api/firebase';
 
 ReactDOM.render(
   <React.StrictMode>

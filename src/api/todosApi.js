@@ -1,40 +1,75 @@
-import { mockTodos } from "../features/todos/mocks";
+import  {getDatabase, ref, onValue, update, push} from 'firebase/database';
 
-const mockDelayMS = 500;
+export const fetchTodos = () => {
+    return new Promise(resolve => {
+        const db = getDatabase();
+        const todoListRef = ref(db, 'todos/');
+        let todoList = [];
+        onValue(todoListRef, (snapshot) => {
+            const todos = snapshot.val();
+            for (let id in todos){
+                todoList.push({
+                    id: id,
+                    description: todos[id].description,
+                    completed: todos[id].completed
+                });
+            }
 
-export const  fetchTodos = () => {
-    return new Promise(resolve => setTimeout(resolve({todos: [...mockTodos]}), mockDelayMS));
+            const response = resolve({todos: [...todoList]});
+            return response;
+        },
+        {
+            onlyOnce: true
+        });
+    })
+    
 }
 
-export const saveNewTodo = (newTodo) => {
-    return new Promise(resolve => setTimeout(() => {
-        resolve({todo: newTodo})
-    }, mockDelayMS)
-    );
+export const saveNewTodo = (desc) => {
+    return new Promise ((resolve, reject) => {
+        const db = getDatabase();
+
+        const newTodo = {
+            description: desc,
+            completed: false
+        };
+
+        push(ref(db, `todos/`), newTodo).then(result => {
+            // saved successfully
+            console.log(result)
+            resolve({todo: {...newTodo, id: result.key}});
+        }).catch((error) => {
+            reject(error);
+        });
+    });
 }
 
 export const markCompleted = (id) => {
-    return new Promise((resolve, reject) =>
-        setTimeout(() => {
-            try {
-                const todo = mockTodos.find(todo => todo.id === id); // taking from mocks here but need to take from backend
-                let updatedTodo = {...todo};
-                updatedTodo.completed = true;
-                resolve({todo: updatedTodo});
-            } catch (error) {
-                reject(error);
-            }
-        }, mockDelayMS)
-    );
+    return new Promise((resolve, reject) => {
+        const db = getDatabase();
+
+        const updates = {};
+        updates[`/todos/${id}/completed`] = true;
+        update(ref(db), updates).then(() => {
+            // successfully updated
+            resolve(id);
+        }).catch((error) => {
+            reject(error);
+        })
+    });
 }
 
 export const markIncomplete = (id) => {
-    return new Promise(resolve =>
-        setTimeout(() => {
-            const todo = mockTodos.find(todo => todo.id === id); // taking from mocks here but need to take from backend
-            let updatedTodo = {...todo};
-            updatedTodo.completed = false;
-            resolve({todo: updatedTodo});
-        }, mockDelayMS)
-    );
+    return new Promise((resolve, reject) => {
+        const db = getDatabase();
+
+        const updates = {};
+        updates[`/todos/${id}/completed`] = false;
+        update(ref(db), updates).then(() => {
+            // successfully updated
+            resolve(id);
+        }).catch((error) => {
+            reject(error);
+        })
+    });
 }

@@ -1,9 +1,31 @@
 # Documentation
+
+## Setup
+Requires Node.js v17.2.0
+
+```
+git clone {repo}
+cd ./{repo}
+npm install
+```
+
+## Run 
+```
+npm start
+```
+
+## Testing
+Unit testing performed with Jest and React Testing Library (https://testing-library.com/docs/react-testing-library/intro/) 
+```
+cd {project_root}
+npm test
+```
+
 ## Project Structure
-In order to structure the components of this application we are using the Application Feature Split approach. For more information refer here: https://github.com/goldbergyoni/nodebestpractices#1-project-structure-practices
+The folder structure of this application is using the Application Feature Split approach. For more information refer here: https://github.com/goldbergyoni/nodebestpractices#1-project-structure-practices
 
 
-# Below you'll find instructions for "Getting Started with Create React App"
+# Below you'll find instructions for "Getting Started with Create React App" default documentation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

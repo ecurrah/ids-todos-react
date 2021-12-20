@@ -1,4 +1,4 @@
-import { mockTodos, mockIncompleteTodo, mockCompleteTodo } from '../mocks';
+import { mockTodos } from '../mocks';
 import reducer, { clearAll } from '../todoSlice';
 
 describe('todoSlice.js', () => {

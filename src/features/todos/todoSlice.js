@@ -6,15 +6,17 @@ const initialState = { entities: [] };
 export const fetchTodosAsync = createAsyncThunk('todos/fetchTodos', async (input, {rejectWithValue}) => {
     try {
         const response = await todosApi.fetchTodos();
+        console.log('fetchTodos response: ', response);
         return response.todos;
     } catch (error) {
+        console.log('fetch Todos error:', error);
         rejectWithValue('Request to fetch ToDos failed');
     }
 })
 
-export const saveNewTodoAsync = createAsyncThunk('todos/saveNewTodo', async (newTodo, {rejectWithValue}) => {
+export const saveNewTodoAsync = createAsyncThunk('todos/saveNewTodo', async (desc, {rejectWithValue}) => {
     try {
-        const response = await todosApi.saveNewTodo(newTodo);
+        const response = await todosApi.saveNewTodo(desc);
         return response.todo;
     } catch (error) {
         rejectWithValue('Request to create new ToDo failed');
@@ -25,7 +27,7 @@ export const markCompletedAsync = createAsyncThunk('todos/markCompleted', async 
     console.log('markCompletedAsync started')
     try {
         const response = await todosApi.markCompleted(id);
-        return response.todo;
+        return response;
     } catch (error) {
         console.log(error);
         rejectWithValue(id);
@@ -35,7 +37,7 @@ export const markCompletedAsync = createAsyncThunk('todos/markCompleted', async 
 export const markIncompleteAsync = createAsyncThunk('todos/markIncomplete', async (id, {rejectWithValue}) => {
     try {
         const response = await todosApi.markIncomplete(id);
-        return response.todo;
+        return response;
     } catch (error) {
         rejectWithValue(id);
     }
@@ -78,7 +80,7 @@ export const todoSlice = createSlice({
         .addCase(saveNewTodoAsync.pending, (state, action) => {
             console.log('Creating Todo... ', action);
         })
-        .addCase (saveNewTodoAsync.fulfilled, (state, action) => {
+        .addCase(saveNewTodoAsync.fulfilled, (state, action) => {
             console.log('Successfully created Todo: ', action);
             state.entities.push(action.payload);
         })
@@ -91,11 +93,11 @@ export const todoSlice = createSlice({
         })
         .addCase (markCompletedAsync.fulfilled, (state, action) => {
             //console.log('Successfully Marked Todo Completed: ', action);
-            const todo = state.entities.find(todo => todo.id === action.payload.id)
+            const todo = state.entities.find(todo => todo.id === action.payload)
             todo.completed = true;
         })
         .addCase (markCompletedAsync.rejected, (state, action) => {
-            //console.log('markCompleteAsync rejected: ', action);
+            console.log('markCompleteAsync rejected: ', action);
         })
         /**  MARK TODO INCOMPLETE **/
         .addCase(markIncompleteAsync.pending, (state, action) => {
@@ -103,11 +105,11 @@ export const todoSlice = createSlice({
         })
         .addCase (markIncompleteAsync.fulfilled, (state, action) => {
             //console.log('Successfully Marked Todo Incomplete: ', action);
-            const todo = state.entities.find(todo => todo.id === action.payload.id)
+            const todo = state.entities.find(todo => todo.id === action.payload)
             todo.completed = false;
         })
         .addCase (markIncompleteAsync.rejected, (state, action) => {
-            //console.log('markIncompleteAsync rejected: ', action);
+            console.log('markIncompleteAsync rejected: ', action);
         })
     }
 })
